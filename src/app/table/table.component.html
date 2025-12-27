@@ -1,0 +1,54 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card p-3">
+                <div class="form-group">
+                    <label for="name">Frist name</label>
+                    <input type="text" #name class="form-control">
+                    <label for="name">Last name</label>
+                    <input type="text" #lname class="form-control">
+                    <label for="name">Email</label>
+                    <input type="text" #email class="form-control">
+                    <label for="name"> Contact</label>
+                    <input type="text" #contact class="form-control">
+                </div>
+                <button *ngIf="!isinEditMode" (click)="onAddUser()" mat-raised-button color="primary">Add</button>
+                <button *ngIf="isinEditMode" (click)="onUpdate()" mat-raised-button color="primary">Update</button>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <table class="table table-bordered bd-white">
+                <thead>
+                    <tr>
+                        <th>Sr No.</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Contact</th>
+                        <th>Edit</th>
+                        <th>Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let u of students; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{u.fname}} {{u.lname}}</td>
+                        <td>{{u.email}}</td>
+                        <td>{{u.contact}}</td>
+                        <td>
+                            <button (click)="onEdit(u)" mat-mini-fab color="primary"
+                                aria-label="Example icon button with a menu icon">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                        </td>
+                        <td>
+                            <button (click)="onRemove(u.id)" mat-mini-fab color="warn"
+                                aria-label="Example icon button with a menu icon">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
