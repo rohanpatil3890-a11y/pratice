@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Iuser } from '../model/user';
+import { Iuser } from '../shared/model/user';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { GetconformComponent } from '../getconform/getconform.component';
 import { MatSnackBar } from '@angular/material/snack-bar';

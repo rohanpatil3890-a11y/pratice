@@ -9,11 +9,13 @@ import { TableComponent } from './table/table.component';
 import { GetconformComponent } from './getconform/getconform.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { StudentComponent } from './student/student.component';
 @NgModule({
   declarations: [
     AppComponent,
     TableComponent,
-    GetconformComponent
+    GetconformComponent,
+    StudentComponent
   ],
   imports: [
     BrowserModule,
