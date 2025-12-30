@@ -36,7 +36,7 @@ export class StudentComponent implements OnInit {
   @ViewChild('Contact') Contact !: ElementRef
 
   isinEditMode: boolean = false;
-  EditId !: string;
+  EditId : string=""
 
 
   studentArr: Array<Istudent> = students2
@@ -126,6 +126,7 @@ export class StudentComponent implements OnInit {
     let getIndex = this.studentArr.findIndex(s => s.id === UPDATE_OBJSTU.id);
     this.studentArr[getIndex] = UPDATE_OBJSTU;
     this.isinEditMode = false;
+    this.EditId = "";
 
     this.snackBar.open(`The Student with id ${UPDATE_OBJSTU.id} is updated successfully`,"Close",{
       horizontalPosition : "left",
