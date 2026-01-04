@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class StudentComponent implements OnInit {
 
+
   constructor(
     private snackBar: MatSnackBar,
     private Matdilog: MatDialog) { }
@@ -30,45 +31,50 @@ export class StudentComponent implements OnInit {
     )
   }
 
-  @ViewChild('Fname') Fname !: ElementRef
-  @ViewChild('Lname') Lname !: ElementRef
-  @ViewChild('Email') Email !: ElementRef
-  @ViewChild('Contact') Contact !: ElementRef
 
-  isinEditMode: boolean = false;
-  EditId : string=""
+  @ViewChild('StudentName') StudentName !: ElementRef;
+  @ViewChild('StudentLname') StudentLname !: ElementRef;
+  @ViewChild('Email') Email !: ElementRef;
+  @ViewChild('Contact') Contact !: ElementRef;
 
 
   studentArr: Array<Istudent> = students2
 
 
-  onAdduser() {
+  isinEditMode: boolean = false;
+  EditId: string = ""
 
-    if (this.Fname.nativeElement.value) {
-      let StudentObj: Istudent = {
 
-        fname: this.Fname.nativeElement.value,
-        lname: this.Lname.nativeElement.value,
+  addStudent() {
+    if (this.StudentName.nativeElement.value) {
+      let stdobj: Istudent = {
+        fname: this.StudentName.nativeElement.value,
+        lname: this.StudentLname.nativeElement.value,
         email: this.Email.nativeElement.value,
         contact: this.Contact.nativeElement.value,
         id: this.uuid()
-
       }
 
-      this.studentArr.unshift(StudentObj);
-      this.Fname.nativeElement.value = "";
-      this.Lname.nativeElement.value = "";
+      this.studentArr.push(stdobj);
+      this.StudentName.nativeElement.value = "";
+      this.StudentLname.nativeElement.value = "";
       this.Email.nativeElement.value = "";
-       this.Contact.nativeElement.value = "";
-
-       this.snackBar.open(`The student with id ${StudentObj.id} is created successfully`,"Close",{
-        horizontalPosition : "left",
-        verticalPosition : "top",
-        duration : 2000
-       })
-
+      this.Contact.nativeElement.value = "";
     }
+
+    this.snackBar.open(`The student with id is created successfully `,"CLose",{
+      horizontalPosition: "left",
+      verticalPosition : "top",
+      duration : 2000
+    })
+
+
   }
+
+  trckById(index : number, todo : Istudent){
+    return todo.id
+  }
+
 
   onRemove(id: string) {
 
@@ -97,42 +103,57 @@ export class StudentComponent implements OnInit {
 
   }
 
-  OnEdit(std: Istudent) {
 
-    this.Fname.nativeElement.value = std.fname;
-    this.Lname.nativeElement.value = std.lname;
-    this.Email.nativeElement.value = std.email;
+  onEdit(std: Istudent) {
+
+    this.StudentName.nativeElement.value = std.fname;
+    this.StudentLname.nativeElement.value = std.lname;
+    this.Email.nativeElement.value = std.email
     this.Contact.nativeElement.value = std.contact;
-    this.EditId = std.id;
-    this.isinEditMode = true;
+    this.EditId = std.id
+    this.isinEditMode = true
   }
 
-  onUpdate() {
 
-    let UPDATE_OBJSTU: Istudent = {
+  OnUpdate() {
 
-      fname: this.Fname.nativeElement.value,
-      lname: this.Lname.nativeElement.value,
+    let UPDATE_OBJ: Istudent = {
+
+      fname: this.StudentName.nativeElement.value,
+      lname: this.StudentLname.nativeElement.value,
       email: this.Email.nativeElement.value,
       contact: this.Contact.nativeElement.value,
       id: this.EditId
     }
 
-    this.Fname.nativeElement.value = "";
-    this.Lname.nativeElement.value = "";
+    let getIndex = this.studentArr.findIndex(p => p.id === UPDATE_OBJ.id);
+
+    this.studentArr[getIndex] = UPDATE_OBJ;
+
+    this.StudentName.nativeElement.value = "";
+    this.StudentLname.nativeElement.value = "";
     this.Email.nativeElement.value = "";
-     this.Contact.nativeElement.value = "";
+    this.Contact.nativeElement.value = "";
+    this.isinEditMode = false
 
-    let getIndex = this.studentArr.findIndex(s => s.id === UPDATE_OBJSTU.id);
-    this.studentArr[getIndex] = UPDATE_OBJSTU;
-    this.isinEditMode = false;
-    this.EditId = "";
-
-    this.snackBar.open(`The Student with id ${UPDATE_OBJSTU.id} is updated successfully`,"Close",{
-      horizontalPosition : "left",
+    this.snackBar.open(`The student with id is Updated successfully `,"CLose",{
+      horizontalPosition: "left",
       verticalPosition : "top",
       duration : 2000
     })
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

@@ -10,12 +10,14 @@ import { GetconformComponent } from './getconform/getconform.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { StudentComponent } from './student/student.component';
+import { TodoComponent } from './todo/todo.component';
 @NgModule({
   declarations: [
     AppComponent,
     TableComponent,
     GetconformComponent,
-    StudentComponent
+    StudentComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,

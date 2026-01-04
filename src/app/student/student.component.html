@@ -1,4 +1,95 @@
 <div class="container mt-5">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card p-3">
+                <div class="form-group">
+                    <label for="StudentName">Frist Name</label>
+                    <input type="text"#StudentName class="form-control">
+                    <label for="StudentName">Frist Name</label>
+                    <input type="text"#StudentLname class="form-control">
+                    <label for="Email">Email</label>
+                    <input type="text"#Email class="form-control">
+                    <label for="conatact">Conatct</label>
+                    <input type="text" #Contact class="form-control">
+                </div>
+                <button 
+                *ngIf="!isinEditMode"
+                (click)="addStudent()"
+                mat-raised-button color="primary">Add</button>
+                <button 
+                *ngIf="isinEditMode"
+                (click)="OnUpdate()"
+                mat-raised-button color="primary">Update</button>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <table class="table table-bordered bg-white">
+                <thead>
+                    <tr>
+                        <th>Sr.No</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Conatct</th>
+                        <th>Edit</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let std of studentArr; let i = index ; trckById : trckById">
+                        <td>{{i + 1}}</td>
+                        <td>{{std.fname}} {{std.lname}}</td>
+                        <td>{{std.email}}</td>
+                        <td>{{std.contact}}</td>
+                        <td><button
+                          (click)="onEdit(std)"
+                        mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+                            <mat-icon>edit</mat-icon>
+                        </button></td>
+                        <td>
+                            <button
+                           (click)="onRemove(std.id)"
+                        mat-mini-fab color="warn" aria-label="Example icon button with a menu icon">
+                            <mat-icon>delete</mat-icon>
+                        </button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container mt-5">
     <h2>
         {{isinEditMode ? "Update Student" : "Add Student"}}
     </h2>
@@ -56,4 +147,4 @@
             </table>
         </div>
     </div>
-</div>
+</div> -->
